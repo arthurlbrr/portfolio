@@ -8,13 +8,15 @@ rectangle Portfolio {
   usecase "Consulter le profil" as UC1
   usecase "Télécharger le CV" as UC2
   usecase "Consulter les projets" as UC3
-  usecase "Consulter les compétences" as UC4
-  usecase "Envoyer un message" as UC5
-  usecase "S'authentifier" as UC6
-  usecase "Gérer les projets (CRUD)" as UC7
-  usecase "Gérer les compétences (CRUD)" as UC8
-  usecase "Modifier le profil / CV" as UC9
-  usecase "Consulter / supprimer les messages" as UC10
+  usecase "Consulter les expériences" as UC4
+  usecase "Consulter les compétences" as UC5
+  usecase "Envoyer un message" as UC6
+  usecase "S'authentifier" as UC7
+  usecase "Gérer les projets (CRUD)" as UC8
+  usecase "Gérer les expériences (CRUD)" as UC9
+  usecase "Gérer les compétences (CRUD)" as UC10
+  usecase "Modifier le profil / CV" as UC11
+  usecase "Consulter / supprimer les messages" as UC12
 }
 
 Visiteur --> UC1
@@ -22,12 +24,15 @@ Visiteur --> UC2
 Visiteur --> UC3
 Visiteur --> UC4
 Visiteur --> UC5
-Administrateur --> UC7
+Visiteur --> UC6
 Administrateur --> UC8
 Administrateur --> UC9
 Administrateur --> UC10
-UC7 ..> UC6 : <<include>>
-UC8 ..> UC6 : <<include>>
-UC9 ..> UC6 : <<include>>
-UC10 ..> UC6 : <<include>>
+Administrateur --> UC11
+Administrateur --> UC12
+UC8 ..> UC7 : <<include>>
+UC9 ..> UC7 : <<include>>
+UC10 ..> UC7 : <<include>>
+UC11 ..> UC7 : <<include>>
+UC12 ..> UC7 : <<include>>
 @enduml
