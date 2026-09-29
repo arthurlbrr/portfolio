@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import { pool } from './config/db.js';
+import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -12,6 +13,7 @@ app.use(helmet());
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use('/api/auth', authRoutes);
 
 app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok' });
@@ -20,7 +22,7 @@ app.get('/api/health', (_req, res) => {
 app.get('/api/health/db', async (_req, res) => {
     try {
         await pool.query('SELECT 1');
-        res.json({ db: 'ok' });
+        res.json({ db: 'ok' }); 
     } catch (error) {
         console.error(error);
         res.status(500).json({ db: 'error' });
