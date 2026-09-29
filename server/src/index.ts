@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import { pool } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
+import competenceRoutes from './routes/competenceRoutes.js';
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -14,6 +15,7 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api/auth', authRoutes);
+app.use('/api/competences', competenceRoutes);
 
 app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok' });
