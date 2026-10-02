@@ -9,6 +9,7 @@ import competenceRoutes from './routes/competenceRoutes.js';
 import projetRoutes from './routes/projetRoutes.js';
 import { UPLOAD_DIR } from './middlewares/upload.js';
 import experienceRoutes from './routes/experienceRoutes.js';
+import profilRoutes from './routes/profilRoutes.js';
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -22,6 +23,7 @@ app.use('/api/competences', competenceRoutes);
 app.use('/uploads', express.static(UPLOAD_DIR));
 app.use('/api/projets', projetRoutes);
 app.use('/api/experiences', experienceRoutes);
+app.use('/api/profil', profilRoutes);
 
 app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok' });
