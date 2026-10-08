@@ -1,20 +1,21 @@
-import { useEffect, useState } from 'react';
-
-interface Profil {
-  prenom: string;
-  nom: string;
-  titre: string;
-}
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Accueil from './pages/Accueil';
+import Projets from './pages/Projets';
+import Experiences from './pages/Experiences';
+import Competences from './pages/Competences';
+import Contact from './pages/Contact';
 
 export default function App() {
-  const [profil, setProfil] = useState<Profil | null>(null);
-
-  useEffect(() => {
-    fetch('/api/profil')
-      .then((res) => res.json())
-      .then(setProfil)
-      .catch(console.error);
-  }, []);
-
-  return <h1>{profil ? `${profil.prenom} ${profil.nom} - ${profil.titre}` : 'Chargement...'}</h1>;
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Accueil />} />
+        <Route path="/projets" element={<Projets />} />
+        <Route path="/experiences" element={<Experiences />} />
+        <Route path="/competences" element={<Competences />} />
+        <Route path="/contact" element={<Contact />} />
+      </Route>
+    </Routes>
+  );
 }
