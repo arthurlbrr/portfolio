@@ -10,7 +10,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction): vo
     }
 
     try {
-        jwt.verify(token, process.env.JWT_SECRET as string);
+        jwt.verify(token, process.env.JWT_SECRET as string, { algorithms: ['HS256'] });
         next();
     } catch {
         res.status(401).json({ message: 'Session invalide ou expirée' });

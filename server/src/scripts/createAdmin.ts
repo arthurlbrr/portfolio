@@ -10,6 +10,11 @@ if (!email || !password) {
     process.exit(1);
 }
 
+if (password.length < 12) {
+    console.error('ADMIN_PASSWORD : 12 caractères minimum');
+    process.exit(1);
+}
+
 const hash = await bcrypt.hash(password, 12);
 
 await pool.query(

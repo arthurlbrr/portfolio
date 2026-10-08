@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import type { RowDataPacket } from 'mysql2';
 import { pool } from '../config/db.js';
 
+const DUMMY_HASH = bcrypt.hashSync('mot-de-passe-factice', 12);
 interface AdminRow extends RowDataPacket {
     id_admin: number;
     email: string;
@@ -13,7 +14,7 @@ interface AdminRow extends RowDataPacket {
 export async function login(req: Request, res: Response): Promise<void> {
     const { email, password } = req.body ?? {};
 
-    if (typeof email !== 'string' || typeof password !== 'string') {
+    if (typeof email !== 'string' || typeof password !== 'string' || password.length > 200) {
         res.status(400).json({ message: 'Email et mot de passe requis' });
         return;
     }
@@ -24,7 +25,7 @@ export async function login(req: Request, res: Response): Promise<void> {
         [email]
         );
     const admin = rows[0];
-    const valid = admin ? await bcrypt.compare(password, admin.mot_de_passe) : false;
+    const valid = await bcrypt.compare(password, admin?.mot_de_passe ?? DUMMY_HASH);
 
     if (!admin || !valid) {
         res.status(401).json({ message: 'Identifiants invalides' });
