@@ -5,3 +5,7 @@ export function formatDate(date: string): string {
         timeZone: 'UTC',
     });
 }
+
+export function formatPeriode(debut: string, fin: string | null): string {
+    return `${formatDate(debut)} – ${fin ? formatDate(fin) : 'en cours'}`;
+}
