@@ -7,3 +7,8 @@ body {
   font-family: system-ui, sans-serif;
   line-height: 1.6;
 }
+
+.champ-piege {
+  position: absolute;
+  left: -9999px;
+}
