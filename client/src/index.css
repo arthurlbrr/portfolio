@@ -466,3 +466,126 @@ main {
     transform: scale(1.04);
   }
 }
+
+/* ---------- Expériences : frise chronologique ---------- */
+.timeline {
+  --gap: 1.75rem;
+  margin: 0 0 0 0.5rem;
+  padding: 0 0 0 var(--gap);
+  list-style: none;
+  border-left: 1px solid var(--line);
+}
+
+@media (min-width: 700px) {
+  .timeline {
+    --gap: 2.5rem;
+    margin-left: 1rem;
+  }
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Point sur la ligne */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 0.4rem;
+  left: calc(var(--gap) * -1 - 6px);
+  width: 11px;
+  height: 11px;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+}
+
+.timeline-period {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.timeline-logo {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.75rem;
+  object-fit: contain;
+}
+
+.timeline-item h2 {
+  margin-bottom: 0.25rem;
+  font-size: 1.3rem;
+}
+
+.timeline-company {
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.timeline-item p:not(.timeline-company) {
+  max-width: 65ch;
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+/* ---------- Compétences ---------- */
+.skills-group + .skills-group {
+  margin-top: 3rem;
+}
+
+.skills-list {
+  display: grid;
+}
+
+@media (min-width: 700px) {
+  .skills-list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
+  }
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Niveau sur 5, affiché en pastilles */
+.level {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.level span {
+  width: 0.65rem;
+  height: 0.65rem;
+  background: var(--line);
+  border-radius: 50%;
+}
+
+.level span.on {
+  background: var(--accent);
+}
